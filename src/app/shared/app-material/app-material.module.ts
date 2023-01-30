@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+
 
 
 @NgModule({
@@ -10,7 +14,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatTabsModule,
     MatCardModule,
     MatFormFieldModule,
-    MatSnackBar
+    MatSnackBarModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule
   ]
 })
 export class AppMaterialModule { }

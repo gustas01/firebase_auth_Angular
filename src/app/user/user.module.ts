@@ -12,8 +12,8 @@ import { SignupComponent } from './components/signup/signup.component';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     AppMaterialModule,
+    ReactiveFormsModule,
   ],
   exports: [
     LoginComponent,

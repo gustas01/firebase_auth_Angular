@@ -18,8 +18,6 @@ export class SignupComponent {
   constructor(private formBuilder: FormBuilder, private router: Router) { }
 
 
-  signUp(){
-
-  }
+  signUp(){ }
 
 }
