@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from 'src/app/firebase';
 
 
 @Component({
@@ -18,6 +20,16 @@ export class SignupComponent {
   constructor(private formBuilder: FormBuilder, private router: Router) { }
 
 
-  signUp(){ }
+  signUp(){
+    if(this.signUpForm.valid){
+
+      createUserWithEmailAndPassword(auth, this.signUpForm.value.email || '', this.signUpForm.value.password || '').then((userCredential) => {
+        const user = userCredential.user
+      }).catch( error => {
+        console.log(error.code);
+        console.log(error.message);
+      })
+    }
+  }
 
 }
