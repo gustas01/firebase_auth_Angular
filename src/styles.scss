@@ -11,3 +11,14 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #303030; }
 
+
+.msg-sucess {
+  background-color: #28a745;
+  color: white;
+}
+
+.msg-error {
+  background-color: red;
+  color: white;
+}
+
