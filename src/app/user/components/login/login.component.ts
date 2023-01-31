@@ -25,7 +25,8 @@ export class LoginComponent{
   handleLogin(){
     if(this.loginForm.valid){
       signInWithEmailAndPassword(auth, this.loginForm.value.email || '', this.loginForm.value.password || '').then((userCredentials) => {
-        this.userService.showMessage(`Usuário ${userCredentials.user.email} criado com sucesso`);
+        console.log(userCredentials.user);
+
       }).catch( error => {
         this.userService.showMessage(`Erro ${error.code}: ${error.message}`);
       })
@@ -43,7 +44,7 @@ export class LoginComponent{
       console.log(error.code);
       console.log(error.message);
       console.log(error.customData.email);
-
+      console.log(FacebookAuthProvider.credentialFromError(error));
     })
   }
 
