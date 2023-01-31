@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from 'src/app/firebase';
 import { UserService } from '../../services/user.service';
 
@@ -30,6 +30,21 @@ export class LoginComponent{
         this.userService.showMessage(`Erro ${error.code}: ${error.message}`);
       })
     }
+  }
+
+  loginWithFacebook(){
+    const provider = new FacebookAuthProvider()
+    signInWithPopup(auth, provider).then(result => {
+      console.log(result.user);
+      const credentials = FacebookAuthProvider.credentialFromResult(result)
+      const accessToken = credentials?.accessToken
+
+    }).catch( error => {
+      console.log(error.code);
+      console.log(error.message);
+      console.log(error.customData.email);
+
+    })
   }
 
 }

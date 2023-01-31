@@ -12,7 +12,6 @@ import { UserService } from '../../services/user.service';
 })
 export class SignupComponent {
   signUpForm = this.formBuilder.group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
   })
