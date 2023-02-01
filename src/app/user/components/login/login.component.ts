@@ -1,8 +1,6 @@
-import { state } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { signInWithEmailAndPassword, FacebookAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import { UserService } from '../../services/user.service';
 
 
