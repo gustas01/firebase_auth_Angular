@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { state } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { signInWithEmailAndPassword, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from 'src/app/firebase';
+import { signInWithEmailAndPassword, FacebookAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import { UserService } from '../../services/user.service';
 
 
@@ -12,7 +12,7 @@ import { UserService } from '../../services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit{
 
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -22,30 +22,19 @@ export class LoginComponent{
 
   constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService) { }
 
-  handleLogin(){
-    if(this.loginForm.valid){
-      signInWithEmailAndPassword(auth, this.loginForm.value.email || '', this.loginForm.value.password || '').then((userCredentials) => {
-        console.log(userCredentials.user);
+  ngOnInit(): void {
+    // this.userService.checkAuthStateChanged()
+  }
 
-      }).catch( error => {
-        this.userService.showMessage(`Erro ${error.code}: ${error.message}`);
-      })
+  login(){
+    if(this.loginForm.valid){
+      this.userService.handleLogin(this.loginForm.value.email || '', this.loginForm.value.password || '')
     }
   }
 
   loginWithFacebook(){
-    const provider = new FacebookAuthProvider()
-    signInWithPopup(auth, provider).then(result => {
-      console.log(result.user);
-      const credentials = FacebookAuthProvider.credentialFromResult(result)
-      const accessToken = credentials?.accessToken
+    this.userService.handleLoginWithFacebook()
 
-    }).catch( error => {
-      console.log(error.code);
-      console.log(error.message);
-      console.log(error.customData.email);
-      console.log(FacebookAuthProvider.credentialFromError(error));
-    })
   }
 
 }

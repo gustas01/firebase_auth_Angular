@@ -1,0 +1,11 @@
+<mat-toolbar *ngIf="userName">
+  <span>Firebase Autentication</span>
+  <span class="spacer"></span>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <i class="material-icons">share</i>
+  </button>
+  <button mat-button [matMenuTriggerFor]="beforeMenu">{{ userName }}</button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <button mat-menu-item (click)="logout()">Sair</button>
+  </mat-menu>
+</mat-toolbar>

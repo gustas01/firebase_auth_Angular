@@ -5,11 +5,13 @@ import { AppMaterialModule } from 'src/app/shared/app-material/app-material.modu
 import { UserModule } from '../user/user.module';
 
 import { LoginSignupComponent } from './login-signup/login-signup.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
-    LoginSignupComponent
+    LoginSignupComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

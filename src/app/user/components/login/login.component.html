@@ -1,6 +1,6 @@
 <mat-card>
   <img src="../../../assets/user-icon.svg" alt="user-icon">
-  <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
     <mat-form-field>
       <mat-label class="mat-label">Email</mat-label>
       <span>
@@ -25,7 +25,7 @@
 
     <mat-checkbox formControlName="rememberMe">Lembrar-me</mat-checkbox>
 
-    <button mat-raised-button color="primary">Entrar</button>
+    <button mat-raised-button color="primary" (click)="login()">Entrar</button>
 
   </form>
 
