@@ -8,6 +8,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     MatToolbarModule,
     MatMenuModule,
+    MatExpansionModule,
   ]
 })
 export class AppMaterialModule { }

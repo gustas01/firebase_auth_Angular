@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { auth } from 'src/app/firebase';
+import { auth, db } from 'src/app/firebase';
+import { collection, getDocs } from "firebase/firestore";
 import { signInWithEmailAndPassword, FacebookAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -56,9 +57,12 @@ export class UserService {
       }
       else{
         this.router.navigate([''])
-
       }
     })
+  }
+
+  async getDataFromDatabase(collectionName: string){
+    return await getDocs(collection(db, collectionName));
   }
 
   showMessage(msg: string, isError: boolean = false){

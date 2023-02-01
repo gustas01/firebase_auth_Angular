@@ -9,3 +9,14 @@
     <button mat-menu-item (click)="logout()">Sair</button>
   </mat-menu>
 </mat-toolbar>
+
+<mat-accordion *ngFor="let guide of guides">
+  <mat-expansion-panel hideToggle class="guide-item">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{guide.title}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>{{guide.content}}</p>
+  </mat-expansion-panel>
+</mat-accordion>

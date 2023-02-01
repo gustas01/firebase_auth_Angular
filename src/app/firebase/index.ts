@@ -25,6 +25,6 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app)
 auth.useDeviceLanguage()
 
-const db = getFirestore()
+const db = getFirestore(app)
 
 export {auth, db}
