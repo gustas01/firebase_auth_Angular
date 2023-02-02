@@ -1,7 +1,22 @@
+@use '../../../config-scss/rem-calc.scss' as *;
+
 .spacer {
   flex: 1 1 auto;
 }
 
+.mat-toolbar{
+  button {
+    margin-right: 5px;
+  }
+
+
+  i {
+    font-size: rem-calc(20);
+  }
+}
+
+
 .guide-item{
   margin: 6px;
 }
+
