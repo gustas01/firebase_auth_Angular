@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatToolbarModule,
     MatMenuModule,
     MatExpansionModule,
+    MatDialogModule,
   ]
 })
 export class AppMaterialModule { }

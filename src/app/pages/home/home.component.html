@@ -1,7 +1,7 @@
 <mat-toolbar *ngIf="userName">
   <span>Firebase Autentication</span>
   <span class="spacer"></span>
-  <button mat-raised-button color="primary">
+  <button mat-raised-button color="primary" (click)="openDialogAddGuide()">
     <i class="material-icons">note_add</i>
     Adicionar guia
   </button>
