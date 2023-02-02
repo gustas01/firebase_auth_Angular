@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { UserService } from 'src/app/user/services/user.service';
 
 @Component({
   selector: 'app-add-guide-dialog',
@@ -7,13 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddGuideDialogComponent implements OnInit {
 
-  constructor() { }
+  addGuideForm = this.formBuilder.group({
+    title: ['', [Validators.required]],
+    content: ['', [Validators.required]],
+  })
+
+  constructor(private formBuilder: FormBuilder, private userSerice: UserService) { }
 
   ngOnInit(): void { }
 
-  //criar formgroupd para coletar dados para mandar para o service em addGuide()
-
   addGuide(){
-    //chamar método do service que adiciona o guide
+    if(this.addGuideForm.valid){
+      this.userSerice.createGuide({
+        title: this.addGuideForm.value.title || '',
+        content: this.addGuideForm.value.content || ''
+      })
+    }
   }
 }

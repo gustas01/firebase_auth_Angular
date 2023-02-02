@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PagesModule } from './pages/pages.module';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { AddGuideDialogComponent } from './componenets/add-guide-dialog/add-guide-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AddGuideDialogComponent } from './componenets/add-guide-dialog/add-guid
     AppRoutingModule,
     BrowserAnimationsModule,
     AppMaterialModule,
-    PagesModule
+    PagesModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

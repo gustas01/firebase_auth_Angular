@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Criar Guia</h2>
 
 <mat-dialog-content class="mat-typography">
-  <form action="">
+  <form [formGroup]="addGuideForm" (ngSubmit)="addGuide()">
     <mat-form-field>
       <mat-label>Título</mat-label>
       <input matInput type="text" formControlName="title" placeholder="Título">
@@ -9,11 +9,9 @@
 
     <mat-form-field>
       <mat-label>Conteúdo</mat-label>
-      <textarea matInput cols="20" rows="8"></textarea>
+      <textarea matInput cols="20" rows="8" formControlName="content"></textarea>
     </mat-form-field>
 
-    <mat-dialog-actions>
-      <button mat-button mat-dialog-close (click)="addGuide()">Okay</button>
-    </mat-dialog-actions>
+      <button type="submit" color="primary" mat-raised-button mat-dialog-close>Adicionar Guia</button>
   </form>
 </mat-dialog-content>

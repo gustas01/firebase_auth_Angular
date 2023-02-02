@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { AddGuideDialogComponent } from 'src/app/componenets/add-guide-dialog/add-guide-dialog.component';
 import { IGuide } from 'src/app/models/iguide';
 import { UserService } from 'src/app/user/services/user.service';
+import { collection, getDocs, addDoc, onSnapshot, doc, query } from "firebase/firestore";
+import { auth, db } from 'src/app/firebase';
+
 
 @Component({
   selector: 'app-home',
@@ -31,15 +34,17 @@ export class HomeComponent implements OnInit {
   }
 
   async getData(){
-    this.userService.getDataFromDatabase('guides').then(coll => coll.forEach(doc => this.guides?.push(doc.data() as IGuide)))
+    const q = query(collection(db, 'guides'))
+    onSnapshot(q, (docs) => {
+      this.guides = []
+      docs.forEach(doc => this.guides?.push(doc.data() as IGuide))
+    });
+
   }
 
 
   openDialogAddGuide() {
-    const dialogRef = this.dialog.open(AddGuideDialogComponent, {width: '80vw'});
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this.dialog.open(AddGuideDialogComponent, {width: '80vw'});
   }
 
 }
