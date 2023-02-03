@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Atualizar Guia</h2>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="updateGuideForm" (ngSubmit)="updateGuide()">
+    <mat-form-field>
+      <mat-label>Título</mat-label>
+      <input matInput type="text" formControlName="title" placeholder="Título" >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Conteúdo</mat-label>
+      <textarea matInput cols="20" rows="8" formControlName="content"></textarea>
+    </mat-form-field>
+
+    <button type="submit" color="primary" mat-raised-button mat-dialog-close>Atualizar Guia</button>
+  </form>
+</mat-dialog-content>

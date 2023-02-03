@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/user/services/user.service';
 
@@ -7,7 +7,7 @@ import { UserService } from 'src/app/user/services/user.service';
   templateUrl: './add-guide-dialog.component.html',
   styleUrls: ['./add-guide-dialog.component.scss']
 })
-export class AddGuideDialogComponent implements OnInit {
+export class AddGuideDialogComponent {
 
   addGuideForm = this.formBuilder.group({
     title: ['', [Validators.required]],
@@ -16,7 +16,6 @@ export class AddGuideDialogComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private userSerice: UserService) { }
 
-  ngOnInit(): void { }
 
   addGuide(){
     if(this.addGuideForm.valid){

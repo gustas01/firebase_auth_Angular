@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { auth, db } from 'src/app/firebase';
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
 import { signInWithEmailAndPassword, FacebookAuthProvider, signInWithPopup, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from "firebase/auth";
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -78,6 +78,10 @@ export class UserService {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+  }
+
+  async updateGuide(guide: IGuide){
+    await updateDoc(doc(db, 'guides', String(guide.id)), {...guide})
   }
 
   showMessage(msg: string, isError: boolean = false){
