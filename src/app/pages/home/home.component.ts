@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AddGuideDialogComponent } from 'src/app/componenets/add-guide-dialog/add-guide-dialog.component';
 import { IGuide } from 'src/app/models/iguide';
 import { UserService } from 'src/app/user/services/user.service';
-import { collection, onSnapshot, query } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from 'src/app/firebase';
 
 
@@ -34,10 +34,10 @@ export class HomeComponent implements OnInit {
   }
 
   async getData(){
-    const q = query(collection(db, 'guides'))
+    const q = query(collection(db, 'guides'), orderBy('title', 'asc'))
     onSnapshot(q, (docs) => {
       this.guides = []
-      docs.forEach(doc => this.guides?.push(doc.data() as IGuide))
+      docs.forEach(doc => this.guides?.push({id: doc.id, ...doc.data()} as IGuide))
     });
 
   }
@@ -45,6 +45,11 @@ export class HomeComponent implements OnInit {
 
   openDialogAddGuide() {
     this.dialog.open(AddGuideDialogComponent, {width: '80vw'});
+  }
+
+
+  async deleteGuide(id: string = ''){
+    await deleteDoc(doc(db, "guides", id));
   }
 
 }

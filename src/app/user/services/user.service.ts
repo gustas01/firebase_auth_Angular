@@ -74,7 +74,7 @@ export class UserService {
 
   async createGuide(guide: IGuide){
     try {
-      const docRef = await addDoc(collection(db, "guides"), guide);
+      await addDoc(collection(db, "guides"), guide);
     } catch (e) {
       console.error("Error adding document: ", e);
     }

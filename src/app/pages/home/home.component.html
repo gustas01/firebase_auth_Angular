@@ -21,6 +21,11 @@
         {{guide.title}}
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p>{{guide.content}}</p>
+    <mat-panel-description>
+      {{guide.content}}
+    </mat-panel-description>
+    <mat-action-row>
+      <i class="material-icons" (click)="deleteGuide(guide.id)">delete</i>
+    </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
