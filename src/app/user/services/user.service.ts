@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { auth, db } from 'src/app/firebase';
-import { collection, getDocs, addDoc, onSnapshot, doc, onSnapshotsInSync, query } from "firebase/firestore";
-import { signInWithEmailAndPassword, FacebookAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { signInWithEmailAndPassword, FacebookAuthProvider, signInWithPopup, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from "firebase/auth";
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { IGuide } from 'src/app/models/iguide';
@@ -15,9 +15,16 @@ export class UserService {
   private _userName = new Subject<string>()
   public userName = this._userName.asObservable()
 
-  private data: IGuide[] = []
-
   constructor(private snackBar: MatSnackBar, private router: Router) { }
+
+
+  handleSignUp(email: string, password: string){
+    createUserWithEmailAndPassword(auth, email, password || '').then((userCredentials) => {
+      this.showMessage(`Usuário ${userCredentials.user.email} criado com sucesso`);
+    }).catch( error => {
+      this.showMessage(`Erro ${error.code}: ${error.message}`);
+    })
+  }
 
   handleLogin(email: string, password: string){
     signInWithEmailAndPassword(auth, email, password).then((userCredentials) => {

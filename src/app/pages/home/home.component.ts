@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { AddGuideDialogComponent } from 'src/app/componenets/add-guide-dialog/add-guide-dialog.component';
 import { IGuide } from 'src/app/models/iguide';
 import { UserService } from 'src/app/user/services/user.service';
-import { collection, getDocs, addDoc, onSnapshot, doc, query } from "firebase/firestore";
-import { auth, db } from 'src/app/firebase';
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from 'src/app/firebase';
 
 
 @Component({

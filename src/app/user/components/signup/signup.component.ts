@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from 'src/app/firebase';
 import { UserService } from '../../services/user.service';
 
 
@@ -21,11 +19,7 @@ export class SignupComponent {
 
   signUp(){
     if(this.signUpForm.valid){
-      createUserWithEmailAndPassword(auth, this.signUpForm.value.email || '', this.signUpForm.value.password || '').then((userCredentials) => {
-        this.userService.showMessage(`Usuário ${userCredentials.user.email} criado com sucesso`);
-      }).catch( error => {
-        this.userService.showMessage(`Erro ${error.code}: ${error.message}`);
-      })
+      this.userService.handleSignUp(this.signUpForm.value.email || '', this.signUpForm.value.password || '')
     }
   }
 
