@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.checkAuthStateChanged()
-    this.userService.userName.subscribe({next: res => this.userName = res})
+    this.userService.userNameObservable.subscribe({next: res => this.userName = res})
 
     this.getData()
    }

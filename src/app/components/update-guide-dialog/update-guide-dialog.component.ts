@@ -16,6 +16,8 @@ export class UpdateGuideDialogComponent {
     content: [this.data.content, [Validators.required]],
   })
 
+  //o this.data é injetado quando eu mando abrir esse dialog, nesse caso está vindo do HomeCompoenent
+
   constructor(private formBuilder: FormBuilder, private userSerice: UserService, @Inject(MAT_DIALOG_DATA) public data: IGuide) { }
 
 

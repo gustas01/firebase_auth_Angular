@@ -13,7 +13,7 @@ import { IGuide } from 'src/app/models/iguide';
 })
 export class UserService {
   private _userName = new Subject<string>()
-  public userName = this._userName.asObservable()
+  public userNameObservable = this._userName.asObservable()
 
   constructor(private snackBar: MatSnackBar, private router: Router) { }
 
