@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AddGuideDialogComponent } from 'src/app/components/add-guide-dialog/add-guide-dialog.component';
 import { IGuide } from 'src/app/models/iguide';
 import { UserService } from 'src/app/user/services/user.service';
-import { collection, deleteDoc, doc, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { db } from 'src/app/firebase';
 import { UpdateGuideDialogComponent } from 'src/app/components/update-guide-dialog/update-guide-dialog.component';
 
@@ -16,9 +16,9 @@ import { UpdateGuideDialogComponent } from 'src/app/components/update-guide-dial
 })
 export class HomeComponent implements OnInit {
 
-  public userName?: string
-  public guides?: IGuide[] = []
-
+  public userName: string = ''
+  public guides: IGuide[] = []
+  public userId: string = ''
 
 
   constructor(private userService: UserService, private router: Router, public dialog: MatDialog) { }
@@ -26,8 +26,11 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.userService.checkAuthStateChanged()
     this.userService.userNameObservable.subscribe({next: res => this.userName = res})
+    this.userService.userIdObservable.subscribe({next: res => {
+      this.userId = res
+      this.getData()
+    }})
 
-    this.getData()
    }
 
   logout(){
@@ -35,7 +38,8 @@ export class HomeComponent implements OnInit {
   }
 
   async getData(){
-    const q = query(collection(db, 'guides'), orderBy('title', 'asc'))
+
+    const q = query(collection(db, 'guides'), where("userId", "==", this.userId))
     onSnapshot(q, (docs) => {
       this.guides = []
       docs.forEach(doc => this.guides?.push({id: doc.id, ...doc.data()} as IGuide))
