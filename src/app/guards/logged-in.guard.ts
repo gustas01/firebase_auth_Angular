@@ -15,7 +15,10 @@ export class LoggedInGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      return true
+      if(auth.currentUser) return true
+
+      this.router.navigate([''])
+      return false
   }
 
 }
